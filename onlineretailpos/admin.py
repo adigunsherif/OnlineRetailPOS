@@ -1,7 +1,6 @@
+from django.conf import settings
 from django.contrib import admin
 from django.contrib.admin.apps import AdminConfig
-from django.conf import settings
-
 
 
 class MyAdminSite(admin.AdminSite):
@@ -11,5 +10,4 @@ class MyAdminSite(admin.AdminSite):
 
 
 class MyAdminConfig(AdminConfig):
-    default_site = 'onlineretailpos.admin.MyAdminSite'
-
+    default_site = "onlineretailpos.admin.MyAdminSite"
