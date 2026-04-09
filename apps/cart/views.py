@@ -1,17 +1,19 @@
 # Create your views here.
-from django.shortcuts import redirect
-from inventory.models import product as Product
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+
+from apps.inventory.models import Product
+
 from .models import Cart
 
 
 @login_required(login_url="/user/login")
-def cart_add(request,id,qty):
+def cart_add(request, id, qty):
     cart = Cart(request)
     product = Product.objects.filter(barcode=id).first()
     if product:
-        cart.add(product=product,quantity=int(qty))
-        return redirect('register')
+        cart.add(product=product, quantity=int(qty))
+        return redirect("register")
     else:
         scheme = request.is_secure() and "https" or "http"
         return redirect(f"{scheme}://{request.get_host()}/register/ProductNotFound/")
@@ -45,5 +47,4 @@ def item_decrement(request, id):
 def cart_clear(request):
     cart = Cart(request)
     cart.clear()
-    return redirect('register')
-
+    return redirect("register")

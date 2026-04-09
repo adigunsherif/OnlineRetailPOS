@@ -1,10 +1,12 @@
 from django.contrib import admin
-from .models import displayed_items
+
+from .models import DisplayItem
+
 
 # Register your models here.
-@admin.register(displayed_items)
+@admin.register(DisplayItem)
 class DisplayedItems(admin.ModelAdmin):
-    list_display = ('barcode','display_name','display_color','variable_price')
+    list_display = ("barcode", "display_name", "display_color", "variable_price")
 
 
 # #### Admin Log Entry
