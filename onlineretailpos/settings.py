@@ -23,8 +23,6 @@ env = environ.Env()
 # Take environment variables from .env file
 environ.Env.read_env(BASE_DIR / ".env")
 
-env = environ.Env()
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -229,3 +227,7 @@ PRINTER_PRODUCT_ID = env("PRINTER_PRODUCT_ID")
 PRINT_RECEIPT = env("PRINT_RECEIPT", bool)
 
 CASH_DRAWER = env("CASH_DRAWER", bool)
+
+DEFAULT_CURRENCY_CODE = env("DEFAULT_CURRENCY_CODE", default="USD")
+
+DEFAULT_CURRENCY_SYMBOL = env("DEFAULT_CURRENCY_SYMBOL", default="$")

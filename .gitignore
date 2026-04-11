@@ -9,3 +9,5 @@ venv/
 env/
 postgres_data/
 !.env.sample
+staticfiles/
+media/

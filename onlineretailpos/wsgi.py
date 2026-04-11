@@ -11,7 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "onlineretailpos.settings.production")
-os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "onlineretailpos.settings")
 
 application = get_wsgi_application()
