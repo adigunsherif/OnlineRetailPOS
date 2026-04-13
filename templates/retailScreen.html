@@ -36,10 +36,10 @@ Register | Online Retail POS
                                 <strong>Tax Total : </strong>{{ tax_total|floatformat:2 }}</div>
                             <div class="text-xl font-weight-bold text-success text-uppercase mb-1">
                                 <strong>Total : </strong></div>
-                            <div class="h3 mb-0 font-weight-bold text-gray-800" style="text-align:right;" >{{ total|floatformat:2 }}</div>
+                            <div class="h3 mb-0 font-weight-bold text-gray-800" style="text-align:right;" >{{ DEFAULT_CURRENCY_SYMBOL}}{{ total|floatformat:2 }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-3x text-gray-300"></i>
+                            <i class="fas fa-money fa-3x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -82,12 +82,12 @@ Register | Online Retail POS
                             <td>{{value.line_total}}</td>
                         </tr>
                         {% endfor %}
-                    </table> 
+                    </table>
                 </div>
             </div>
         </div>
-        
-        
+
+
     </div>
     <div class="col-lg-6" >
         <hr >
@@ -100,12 +100,12 @@ Register | Online Retail POS
         <hr >
         <div class="btn-block" style="padding-top: 10px;text-align:center" >
             <button id="disable_P_1" onclick="return window.open('/endTransaction/card/DEBIT_CREDIT/',target='_self')" class="btn btn-success" style="width:23%;height:60px; margin:2px;margin-bottom:5px;background-color:darkgreen" > Debit/<br>Credit </button>
-            <button id="disable_P_2" onclick="endTransactionCash(5,'{{ total }}')" class="btn btn-success" style="width:23%;margin:2px;height:60px;margin-bottom:5px"> 5$ </button>
-            <button id="disable_P_3" onclick="endTransactionCash(10,'{{ total }}')" class="btn btn-success" style="width:23%;margin:2px;height:60px;margin-bottom:5px"> 10$ </button>
-            <button id="disable_P_4" onclick="endTransactionCash('Next','{{ total }}')" class="btn btn-success" style="width:23%;margin:2px;height:60px;margin-bottom:5px;background-color:rgb(27, 66, 27)"> Next<br>Dollar </button>
+            <button id="disable_P_2" onclick="endTransactionCash(5,'{{ total }}')" class="btn btn-success" style="width:23%;margin:2px;height:60px;margin-bottom:5px"> {{ DEFAULT_CURRENCY_SYMBOL}}5 </button>
+            <button id="disable_P_3" onclick="endTransactionCash(10,'{{ total }}')" class="btn btn-success" style="width:23%;margin:2px;height:60px;margin-bottom:5px"> {{ DEFAULT_CURRENCY_SYMBOL}}10 </button>
+            <button id="disable_P_4" onclick="endTransactionCash('Next','{{ total }}')" class="btn btn-success" style="width:23%;margin:2px;height:60px;margin-bottom:5px;background-color:rgb(27, 66, 27)"> Next<br>{{DEFAULT_CURRENCY_CODE}} </button>
             <button id="disable_P_5" onclick="return window.open('/endTransaction/card/EBT/',target='_self')" class="btn btn-success" style="width:23%;margin: 2px;height:60px;margin-bottom:5px;background-color:darkgreen"> EBT </button>
-            <button id="disable_P_6" onclick="endTransactionCash(20,'{{ total }}')" class="btn btn-success" style="width:23%;margin:2px;height:60px;margin-bottom:5px" > 20$ </button>
-            <button id="disable_P_7" onclick="endTransactionCash(50,'{{ total }}')" class="btn btn-success" style="width:23%;margin: 2px;height:60px;margin-bottom:5px"> 50$ </button>
+            <button id="disable_P_6" onclick="endTransactionCash(20,'{{ total }}')" class="btn btn-success" style="width:23%;margin:2px;height:60px;margin-bottom:5px" > {{ DEFAULT_CURRENCY_SYMBOL}}20 </button>
+            <button id="disable_P_7" onclick="endTransactionCash(50,'{{ total }}')" class="btn btn-success" style="width:23%;margin: 2px;height:60px;margin-bottom:5px"> {{ DEFAULT_CURRENCY_SYMBOL}}50 </button>
             <button id="disable_P_8" onclick="endTransactionCash('CASH','{{ total }}')" class="btn btn-success" style="width:23%;margin:2px;height:60px;margin-bottom:5px;background-color:rgb(27, 66, 27)"> CASH </button>
         </div>
         <div class="loginPopup" id='cash_popup'> </div>
@@ -151,7 +151,7 @@ Register | Online Retail POS
     function closeForm(){
         document.getElementById("popupForm").style.display = "none";
     }
-    
+
     function variableAmount(barcode,name,info){
         document.getElementById("cash_popup").innerHTML = '<div class="formPopup" id="popupForm" style="display:block"><form action="#" onsubmit="return amountProductFunc(this);" class="formContainer"><label id="department_value" class="h5 text-primary">'+barcode+'</label><hr><div class="h5 text-success mb-3">'+name+'</div><div class="h6 mb-1 text-gray-800" style="text-align:left">Please Enter Amount...</div><input class="mb-3" type="text" id="cashAmount" placeholder="Variable Amount..." autocomplete="off" required /><button type="submit" class="btn btn-success btn-lg btn-block">Enter</button><button type="button" class="btn btn-danger btn-lg btn-block" onclick="closeForm()">Close</button><div style="text-align:left"><br>'+info+'</div></form></div>'
         $( "#cashAmount" ).focus();
